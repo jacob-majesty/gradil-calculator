@@ -1,0 +1,15 @@
+services:
+  gradil:
+    build: .
+    image: gradil-calculator:local
+    ports:
+      - "${APP_PORT:-3000}:3000"
+    environment:
+      PORT: 3000
+      DB_PATH: /data/gradil.db
+    volumes:
+      - gradil-data:/data
+    restart: unless-stopped
+
+volumes:
+  gradil-data:
