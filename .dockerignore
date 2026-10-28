@@ -1,0 +1,14 @@
+.git
+.github
+**/node_modules
+**/dist
+**/coverage
+**/data
+*.db
+*.db-shm
+*.db-wal
+docs
+ENUNCIADO.md
+LICENSE
+README.md
+docker-compose.yml
