@@ -39,8 +39,7 @@ As premissas e decisões técnicas estão em
 ├── web/                  React + Vite
 │   └── src/components/   Formulário, resultado, esboço e histórico
 ├── docs/
-│   ├── adr/              Decisões técnicas consolidadas
-│   └── deploy-lightsail.md
+│   └── adr/              Decisões técnicas consolidadas
 ├── .github/workflows/    CI (testes e typecheck)
 ├── Dockerfile            Build multi-stage Alpine
 └── docker-compose.yml
@@ -85,19 +84,6 @@ Os pedidos são persistidos no volume `gradil-data` (`/data/gradil.db`).
 A imagem usa `node:24-alpine`, build multi-stage, execução como usuário `node`,
 health check no Docker e caches limpos durante o build.
 
-## Deploy no AWS Lightsail
-
-O passo a passo está em
-[`docs/deploy-lightsail.md`](docs/deploy-lightsail.md). Em resumo: instância
-Ubuntu 24.04 com 1 GB, IP estático, porta HTTP liberada e:
-
-```bash
-APP_PORT=80 docker compose up -d --build
-```
-
-O SQLite fica no volume local da instância, então não é necessário EFS nem banco
-gerenciado. A configuração assume uma única instância da aplicação.
-
 ## API
 
 | Método | Rota           | Descrição                                      |
@@ -114,11 +100,6 @@ curl -X POST http://localhost:3000/api/orders \
   -H 'Content-Type: application/json' \
   -d '{"length":5.1,"height":2.03,"color":"Verde","confirmed":true}'
 ```
-
-## Decisões
-
-As escolhas de arquitetura e premissas estão em
-[`docs/adr/decisoes-tecnicas.md`](docs/adr/decisoes-tecnicas.md).
 
 ## Licença
 
